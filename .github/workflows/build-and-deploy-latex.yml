@@ -1,0 +1,21 @@
+name: Build LaTeX and deploy on GitHub Releases
+on:
+  push:
+    tags: '*'
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+  pull_request:
+  workflow_dispatch:
+
+permissions: { }
+
+jobs:
+  success:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: ruslanissimo/latex-action@v1.0.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
